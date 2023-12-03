@@ -1,6 +1,3 @@
-import time
-
-
 def main():
     puzzle_input = open("D:\python projects\AdventOfCode2023\day3\puzzle_input.txt", "r", encoding="utf8").readlines()
     suma = 0
