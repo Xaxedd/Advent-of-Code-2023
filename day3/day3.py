@@ -11,28 +11,34 @@ def main():
         for char_nr, char in enumerate(line):
             if not char.isdigit() and char != ".":
                 numbers_near_this_symbol = []
+
                 for y in range(line_nr - 1, line_nr + 2):
-                    a = 1
+                    characters_to_skip = 0
                     for x in range(char_nr - 1, char_nr + 2):
-                        if a > 1:
-                            a -= 1
+                        if characters_to_skip > 0:
+                            characters_to_skip -= 1
                             continue
+
                         if puzzle_input[y][x].isdigit():
                             number = str(puzzle_input[y][x])
+                            iter = 1
                             while True:
-                                if puzzle_input[y][x - a].isdigit():
-                                    number = str(puzzle_input[y][x - a]) + number
+                                if puzzle_input[y][x - iter].isdigit():
+                                    number = str(puzzle_input[y][x - iter]) + number
                                 else:
                                     break
-                                a += 1
+                                iter += 1
 
-                            a = 1
+                            iter = 1
+                            characters_to_skip = 0
                             while True:
-                                if puzzle_input[y][x + a].isdigit():
-                                    number = number + str(puzzle_input[y][x + a])
+                                if puzzle_input[y][x + iter].isdigit():
+                                    number = number + str(puzzle_input[y][x + iter])
                                 else:
                                     break
-                                a += 1
+                                characters_to_skip += 1
+                                iter += 1
+
                             suma += int(number)
                             numbers_near_this_symbol.append(int(number))
                 if char == "*":
