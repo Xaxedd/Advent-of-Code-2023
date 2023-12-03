@@ -3,12 +3,8 @@ import time
 
 def main():
     puzzle_input = open("D:\python projects\AdventOfCode2023\day3\puzzle_input.txt", "r", encoding="utf8").readlines()
-    new_puzzle = []
     suma = 0
     gear_ratio = 0
-
-    for line in puzzle_input:
-        new_puzzle.append(list(line.strip()))
 
     for line_nr, line in enumerate(puzzle_input):
         line = line.strip()
@@ -23,11 +19,9 @@ def main():
                             continue
                         if puzzle_input[y][x].isdigit():
                             number = str(puzzle_input[y][x])
-                            new_puzzle[y][x] = "."
                             while True:
                                 if puzzle_input[y][x - a].isdigit():
                                     number = str(puzzle_input[y][x - a]) + number
-                                    new_puzzle[y][x - a] = "."
                                 else:
                                     break
                                 a += 1
@@ -36,7 +30,6 @@ def main():
                             while True:
                                 if puzzle_input[y][x + a].isdigit():
                                     number = number + str(puzzle_input[y][x + a])
-                                    new_puzzle[y][x + a] = "."
                                 else:
                                     break
                                 a += 1
